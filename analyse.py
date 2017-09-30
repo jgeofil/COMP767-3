@@ -4,12 +4,24 @@ from random import choice, shuffle
 
 data = None
 
-with open('all.json') as fp:
+with open('jsons/all.json') as fp:
     data = json.load(fp)
 
 shuffle(data)
-data = data[:10000]
+data = data
 
+
+count = 0
+relcount = 0
+
+for d in data:
+    count += 1
+    for r in d['dates']:
+        relcount += 1
+
+print(count, relcount)
+
+'''
 print(json.dumps(data[:10], indent=2, sort_keys=True))
 
 ages = [int(x['Age'].split()[0]) if 'Age' in x and x['Age'].split()[0].isdigit() else 0 for x in data]
@@ -49,6 +61,6 @@ with open('info10.tsv', 'w+') as f:
     spamwriter = csv.writer(f, delimiter='\t', quotechar='|', quoting=csv.QUOTE_MINIMAL)
     for r in sexs:
         spamwriter.writerow(r)
-
+'''
 
 
